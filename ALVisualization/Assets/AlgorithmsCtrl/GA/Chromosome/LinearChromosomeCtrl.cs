@@ -8,14 +8,26 @@ public class LinearChromosomeCtrl : MonoBehaviour
 {
     public GameObject GenePrefab;
     [SerializeField, Range(0, 100)]
-    public int GeneLength = 0;
+    private int GeneLength = 0;
     private int PreGeneLength = 0;
 
     public float StepLength = 0.1f;
     private float PreStepLength = 0.1f;
 
+    //#region Chromosome Parameters
+    //public object MinValue;
+    //public object MaxValue;
+    //public object Fraction;
+    //#endregion
+
+    public Gene[] genes;
+    //private string[] PreChromosomeOptions = { "Alternating-position (AP)", "Cycle (CX)", "Order-based (OX2)", "Ordered (OX1)", "Partially Mapped (PMX)", "Position-based (POS)" };
+    private string[] PreChromosomeOptions = { "FloatintPoint", "Integer" };
+    private int SelectedOptionIndex;
+
     Renderer m_renderer;
-    Gene[] m_Gene;
+
+    IChromosome chromosome;
 
     void Start()
     {
@@ -27,7 +39,7 @@ public class LinearChromosomeCtrl : MonoBehaviour
     {
         if (!Application.isPlaying || !gameObject.activeInHierarchy) return;
 
-        if(PreGeneLength != GeneLength || PreStepLength != StepLength)
+        if (PreGeneLength != GeneLength || PreStepLength != StepLength)
         {
             CreateGenes();
             PreStepLength = StepLength;
@@ -36,7 +48,7 @@ public class LinearChromosomeCtrl : MonoBehaviour
     }
     void OnValidate()
     {
-        if(Application.isPlaying || !gameObject.activeInHierarchy) return;
+        if (Application.isPlaying || !gameObject.activeInHierarchy) return;
         CreateGenes();
     }
 
@@ -79,5 +91,22 @@ public class LinearChromosomeCtrl : MonoBehaviour
         }
 
         m_renderer.bounds = combinedBounds;
+    }
+
+    public string[] GetOptions() => PreChromosomeOptions;
+
+    public void SelectIndex(int index = 0)
+    {
+        string option_name = PreChromosomeOptions[index];
+        switch (option_name)
+        {
+            case "FloatintPoint":
+                //chromosome = new FloatingPointChromosome((double.Parse(MinValue)), (double.Parse(MaxValue)), (int.Parse(Fraction)));
+                break;
+            case "Integer":
+                //chromosome = new IntegerChromosome((int.Parse(MinValue)), (int.Parse(MaxValue)));
+                break;
+        }
+
     }
 }

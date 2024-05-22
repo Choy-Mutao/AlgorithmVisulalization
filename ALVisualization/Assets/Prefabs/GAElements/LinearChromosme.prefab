@@ -90,3 +90,4 @@ MonoBehaviour:
   GenePrefab: {fileID: 4463338540078493621, guid: 9075d29c6cbebe340951b2fdb2da7362, type: 3}
   GeneLength: 10
   StepLength: 0.1
+  genes: []

@@ -67,7 +67,7 @@ public class GenerationCtrl : MonoBehaviour
             GameObject cube = Instantiate(ChromosomePrefab, transform);
             // set random parameters;
             LinearChromosomeCtrl component = cube.GetComponent<LinearChromosomeCtrl>();
-            component.GeneLength = 5;
+            //component.GeneLength = 5;
             component.StepLength = StepLength;
 
             component.SendMessage("OnValidate", null);
