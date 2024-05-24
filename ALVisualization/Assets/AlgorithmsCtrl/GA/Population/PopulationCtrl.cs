@@ -26,4 +26,19 @@ public class PopulationCtrl : MonoBehaviour
     {
 
     }
+
+    public void CreateInitialGeneration()
+    {
+        Debug.Log("CreateInitialGeneration");
+    }
+
+    public void CreateNewGeneration()
+    {
+
+    }
+
+    public void EndCurrentGeneration()
+    {
+
+    }
 }
